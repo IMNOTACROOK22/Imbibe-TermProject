@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="202.0" prefWidth="353.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+   <children>
+      <AnchorPane layoutY="6.0" prefHeight="326.0" prefWidth="548.0">
+         <children>
+            <TextArea layoutX="22.0" layoutY="35.0" prefHeight="272.0" prefWidth="512.0" text="&lt;Cocktail Name&gt;*                                                                              (*) = required text field&#10;&#10;Ingredients*:&#10;&lt;ingredient list with unit conversions&gt;&#10;&#10;Instructions*:&#10;&lt;print out instructions as a sequence&gt; &#10;&lt;End the block with &quot;Serve in a [glass type] glass&quot;&gt;&#10;&#10;Garnishes(optional):&#10;&lt;if left blank, don't print out the Garnish title and text block&gt; &#10;&#10;Description(optional):&#10;&lt;if left blank, don't print out the Description title and text block&gt; &#10;&#10;" />
+            <Text layoutX="14.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="[Viewing]  &lt;Cocktail Name&gt;">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Button layoutX="405.0" layoutY="2.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="129.0" text="Return to Recipe List" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

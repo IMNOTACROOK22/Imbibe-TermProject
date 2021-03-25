@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Main">
+   <children>
+      <AnchorPane prefHeight="178.0" prefWidth="341.0">
+         <children>
+            <Text layoutX="14.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Main Menu">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Text>
+            <Button fx:id="toCreate" layoutX="26.0" layoutY="69.0" mnemonicParsing="false" onAction="#changeToCreate" prefHeight="75.0" prefWidth="113.0" text="Create" />
+            <Button fx:id="toRecipeList" layoutX="207.0" layoutY="69.0" mnemonicParsing="false" onAction="#changeToList" prefHeight="75.0" prefWidth="113.0" text="Recipe List" />
+            <Button fx:id="exit" layoutX="273.0" layoutY="13.0" mnemonicParsing="false" onAction="#handleCloseButtonAction" prefHeight="3.0" prefWidth="56.0" text="Exit" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

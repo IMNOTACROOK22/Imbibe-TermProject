@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.userController">
+   <children>
+      <AnchorPane prefHeight="389.0" prefWidth="737.0">
+         <children>
+            <TextField alignment="TOP_LEFT" layoutX="118.0" layoutY="262.0" prefHeight="113.0" prefWidth="288.0" promptText="Instructions:" />
+            <TextField alignment="TOP_LEFT" layoutX="118.0" layoutY="58.0" prefHeight="113.0" prefWidth="288.0" promptText="Ingredients:" />
+            <TextField alignment="TOP_LEFT" layoutX="118.0" layoutY="195.0" prefHeight="40.0" prefWidth="288.0" promptText="Garnishes(optional):" />
+            <TextField alignment="TOP_LEFT" layoutX="118.0" layoutY="14.0" prefHeight="30.0" prefWidth="288.0" promptText="Cocktail Name:" />
+            <TextField alignment="TOP_LEFT" layoutX="444.0" layoutY="58.0" prefHeight="113.0" prefWidth="274.0" promptText="Description(optional):" />
+            <SplitMenuButton layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" text="Glass type">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Action 1" />
+                <MenuItem mnemonicParsing="false" text="Action 2" />
+              </items>
+            </SplitMenuButton>
+            <Button layoutX="623.0" layoutY="17.0" mnemonicParsing="false" onAction="#changeToMenu" text="Return to Menu" />
+            <Button layoutX="540.0" layoutY="182.0" mnemonicParsing="false" text="ADD RECIPE" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
