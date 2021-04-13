@@ -8,26 +8,13 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.userController">
    <children>
-      <AnchorPane prefHeight="470.0" prefWidth="587.0">
+      <AnchorPane prefHeight="428.0" prefWidth="475.0">
          <children>
-            <Slider layoutX="461.0" layoutY="27.0" orientation="VERTICAL" prefHeight="427.0" prefWidth="14.0" />
-            <ScrollPane layoutX="22.0" layoutY="27.0" prefHeight="427.0" prefWidth="431.0">
-               <content>
-                  <TitledPane animated="false" prefHeight="206.0" prefWidth="369.0" text="Cocktail Name">
-                    <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                           <children>
-                              <Button layoutX="312.0" layoutY="28.0" mnemonicParsing="false" text="View" />
-                              <Button layoutX="314.0" layoutY="78.0" mnemonicParsing="false" text="Edit" />
-                              <Button layoutX="307.0" layoutY="133.0" mnemonicParsing="false" text="Delete" />
-                              <TextArea layoutX="14.0" layoutY="17.0" prefHeight="123.0" prefWidth="207.0" promptText="View Description(if there is one)" />
-                           </children>
-                        </AnchorPane>
-                    </content>
-                  </TitledPane>
-               </content>
-            </ScrollPane>
-            <Button layoutX="475.0" layoutY="15.0" mnemonicParsing="false" onAction="#changeToMenu" text="Return to Menu" />
+            <Button layoutX="358.0" layoutY="16.0" mnemonicParsing="false" onAction="#changeToMenu" text="Return to Menu" />
+            <ListView fx:id="cocktailRecipeList" layoutX="23.0" layoutY="67.0" prefHeight="341.0" prefWidth="385.0" />
+            <Button fx:id="viewButton" layoutX="189.0" layoutY="12.0" mnemonicParsing="false" onAction="#viewRecipe" prefHeight="33.0" prefWidth="52.0" text="View" />
+            <Button fx:id="deleteButton" layoutX="255.0" layoutY="12.0" mnemonicParsing="false" onAction="#deleteRecipe" prefHeight="33.0" prefWidth="52.0" text="Delete" />
+            <TextField fx:id="searchName" layoutX="23.0" layoutY="16.0" promptText="Search:" />
          </children>
       </AnchorPane>
    </children>

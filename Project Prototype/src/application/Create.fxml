@@ -5,23 +5,18 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.userController">
+<AnchorPane prefHeight="389.0" prefWidth="601.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.userController">
    <children>
-      <AnchorPane prefHeight="389.0" prefWidth="737.0">
+      <AnchorPane prefHeight="389.0" prefWidth="599.0">
          <children>
-            <TextField fx:id="instructions" alignment="TOP_LEFT" layoutX="118.0" layoutY="262.0" prefHeight="113.0" prefWidth="288.0" promptText="Instructions:" />
-            <TextField fx:id="ingredientList" alignment="TOP_LEFT" layoutX="118.0" layoutY="58.0" prefHeight="113.0" prefWidth="288.0" promptText="Ingredients:" />
-            <TextField fx:id="garnishes" alignment="TOP_LEFT" layoutX="118.0" layoutY="195.0" prefHeight="40.0" prefWidth="288.0" promptText="Garnishes(optional):" />
-            <TextField fx:id="cocktailName" alignment="TOP_LEFT" layoutX="118.0" layoutY="14.0" prefHeight="30.0" prefWidth="288.0" promptText="Cocktail Name:" />
-            <TextField fx:id="description" alignment="TOP_LEFT" layoutX="444.0" layoutY="58.0" prefHeight="113.0" prefWidth="274.0" promptText="Description(optional):" />
-            <SplitMenuButton layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" text="Glass type">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
-                <MenuItem mnemonicParsing="false" text="Action 2" />
-              </items>
-            </SplitMenuButton>
-            <Button layoutX="623.0" layoutY="17.0" mnemonicParsing="false" onAction="#changeToMenu" text="Return to Menu" />
-            <Button fx:id="addButton" layoutX="540.0" layoutY="182.0" mnemonicParsing="false" onAction="#addRecipe" text="ADD RECIPE" />
+            <TextField fx:id="garnishes" alignment="TOP_LEFT" layoutX="14.0" layoutY="195.0" prefHeight="40.0" prefWidth="288.0" promptText="Garnishes(optional):" />
+            <TextField fx:id="cocktailName" alignment="TOP_LEFT" layoutX="14.0" layoutY="14.0" prefHeight="30.0" prefWidth="288.0" promptText="Cocktail Name:" />
+            <Button layoutX="493.0" layoutY="17.0" mnemonicParsing="false" onAction="#changeToMenu" text="Return to Menu" />
+            <Button fx:id="addButton" layoutX="410.0" layoutY="182.0" mnemonicParsing="false" onAction="#addRecipe" text="ADD RECIPE" />
+            <TextArea fx:id="ingredientList" layoutX="14.0" layoutY="58.0" prefHeight="113.0" prefWidth="288.0" promptText="Ingredients:" />
+            <TextField fx:id="drinkType" layoutX="314.0" layoutY="14.0" prefHeight="30.0" prefWidth="149.0" promptText="Drink Type: (i.e. Sour)" />
+            <TextArea fx:id="description" layoutX="314.0" layoutY="58.0" prefHeight="113.0" prefWidth="274.0" promptText="Description (optional):" />
+            <TextArea fx:id="instructions" layoutX="14.0" layoutY="262.0" prefHeight="113.0" prefWidth="288.0" promptText="Instructions:" />
          </children>
       </AnchorPane>
    </children>
