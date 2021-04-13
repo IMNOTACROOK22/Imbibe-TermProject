@@ -1,5 +1,6 @@
 package application;
 	
+import java.io.File;
 import java.io.IOException;
 
 import javafx.application.Application;
@@ -24,6 +25,12 @@ public class Main extends Application {
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Imbibe +");
 			primaryStage.show();
+			try {
+				   File file = new File("data.properties");
+				   file.createNewFile();
+				} catch(Exception e) {
+				   e.printStackTrace();
+				}
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -52,8 +59,11 @@ public class Main extends Application {
 	
 	@FXML
 	public void changeToList(ActionEvent event) throws IOException{
-		Parent listParent = FXMLLoader.load(getClass().getResource("RecipeList.fxml"));
-		Scene listScene = new Scene(listParent);
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("RecipeList.fxml"));
+		Parent recipeListParent = loader.load();
+		userController userController = loader.getController();
+		userController.initializeRecipeList();
+		Scene listScene = new Scene(recipeListParent);
 		listScene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 		window.setScene(listScene);
