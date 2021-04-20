@@ -14,7 +14,6 @@
             <Button layoutX="493.0" layoutY="17.0" mnemonicParsing="false" onAction="#changeToMenu" text="Return to Menu" />
             <Button fx:id="addButton" layoutX="410.0" layoutY="182.0" mnemonicParsing="false" onAction="#addRecipe" text="ADD RECIPE" />
             <TextArea fx:id="ingredientList" layoutX="14.0" layoutY="58.0" prefHeight="113.0" prefWidth="288.0" promptText="Ingredients:" />
-            <TextField fx:id="drinkType" layoutX="314.0" layoutY="14.0" prefHeight="30.0" prefWidth="149.0" promptText="Drink Type: (i.e. Sour)" />
             <TextArea fx:id="description" layoutX="314.0" layoutY="58.0" prefHeight="113.0" prefWidth="274.0" promptText="Description (optional):" />
             <TextArea fx:id="instructions" layoutX="14.0" layoutY="262.0" prefHeight="113.0" prefWidth="288.0" promptText="Instructions:" />
          </children>

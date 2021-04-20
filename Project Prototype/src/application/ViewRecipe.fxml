@@ -10,7 +10,10 @@
    <children>
       <AnchorPane layoutY="6.0" prefHeight="326.0" prefWidth="548.0">
          <children>
-            <TextArea fx:id="recipeArea" editable="false" layoutX="16.0" layoutY="35.0" prefHeight="251.0" prefWidth="518.0" />
+            <TextArea fx:id="recipeArea" editable="false" layoutX="16.0" layoutY="35.0" prefHeight="251.0" prefWidth="518.0">
+               <font>
+                  <Font size="13.0" />
+               </font></TextArea>
             <Label fx:id="viewLabel" layoutX="16.0" prefHeight="30.0" prefWidth="375.0">
                <font>
                   <Font size="20.0" />
