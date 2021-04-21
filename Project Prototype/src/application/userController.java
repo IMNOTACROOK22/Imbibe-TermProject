@@ -1,16 +1,11 @@
 package application;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.util.*;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.text.DecimalFormat;
-
 import javafx.event.ActionEvent;
 import javafx.stage.Stage;
 import javafx.scene.control.Alert;
@@ -29,11 +24,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import model.imbibeModel;
 
 public class userController {
 	
-	public static HashMap<String, String> recipeList=new HashMap<String,String>();
-	public static Properties properties = new Properties();
+	String oldCocktailName;
+	boolean updateFlag = false;
 	
 	@FXML
 	private TextArea instructions;
@@ -58,13 +54,77 @@ public class userController {
     @FXML
     private Button viewButton;
     @FXML
+    private Button editButton;
+    @FXML
     private Label viewLabel;
+    @FXML
+    private Label viewNameLabel;
     @FXML
     private TextArea recipeArea;
     
-    public void searchRecipe(ActionEvent event) throws IOException {
-    	
+    public void initializeUpdate(String name) throws IOException {
+    	cocktailName.setText(name);
+    	int numBlankLines = 0;
+    	String ingredients = "";
+    	String instructionslist = "";
+    	String garnishesList = "";
+    	File file = new File(name + ".ct");
+		try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+			String line = br.readLine();
+			while(line != null) {
+				
+				if (line.trim().isEmpty()) {
+					numBlankLines++;
+				}
+				else {
+					if(numBlankLines == 0) {
+					ingredients = ingredients + line + "\n";
+					}
+					if(numBlankLines == 1) {
+						instructionslist = instructionslist + line + "\n";
+					}
+					if(numBlankLines == 2) {
+						garnishesList = garnishesList + line + "\n";
+					}
+				}
+				
+				line = br.readLine();
+			}
+		}
+		ingredientList.setText(ingredients);
+		instructions.setText(instructionslist);
+		garnishes.setText(garnishesList);
 		
+		HashMap<String, String> h=new HashMap<String,String>();
+		File file2=new File("data.properties");
+        FileInputStream reader = new FileInputStream(file2);
+		Properties properties=new Properties();
+		properties.load(reader);
+		
+		for(String key: properties.stringPropertyNames()){
+        	h.put(key, properties.get(key).toString());
+        }
+		
+		description.setText(h.get(name));
+    }
+    
+    public void updateRecipe(ActionEvent event) throws IOException {
+    		
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Create.fxml"));
+		Parent createParent = loader.load();
+		userController userController = loader.getController();
+		userController.updateFlag = true;
+		userController.oldCocktailName = viewNameLabel.getText().toString();
+		userController.initializeUpdate(viewNameLabel.getText().toString());
+		Scene createScene = new Scene(createParent);
+		createScene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+		window.setScene(createScene);
+		window.show();
+    }
+    
+    public void searchRecipe(ActionEvent event) throws IOException {
+	
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("RecipeList.fxml"));
 		Parent recipeListParent = loader.load();
 		userController userController = loader.getController();
@@ -97,17 +157,20 @@ public class userController {
     }
     
 	public void addRecipe(ActionEvent event) throws IOException {
+		String inputGarnishes;
+		
 		HashMap<String, String> h=new HashMap<String,String>();
 		File file=new File("data.properties");
         FileInputStream reader = new FileInputStream(file);
 		Properties properties=new Properties();
 		properties.load(reader);
-		String inputGarnishes;
+		
 		
 		for(String key: properties.stringPropertyNames()){
         	h.put(key, properties.get(key).toString());
         }
-		if (h.containsKey(cocktailName.getText().toString()) == true) {
+		
+		if ((h.containsKey(cocktailName.getText().toString()) == true) && updateFlag == false) {
 			Alert a = new Alert(AlertType.NONE);
     		a.setAlertType(AlertType.ERROR);
     		a.setContentText("There is already recipe called " + cocktailName.getText().toString() + "\nPlease enter a different name or delete the recipe named " + cocktailName.getText().toString());
@@ -138,7 +201,12 @@ public class userController {
 		else {	
 			Alert a = new Alert(AlertType.NONE);
     		a.setAlertType(AlertType.CONFIRMATION);
-    		a.setContentText("Create the recipe for a(n) " + cocktailName.getText().toString() + " ?");
+    		if (updateFlag == true) {
+    			a.setContentText("Update the recipe for a(n) " +  oldCocktailName + " ?");
+    		}
+    		else {
+    			a.setContentText("Create the recipe for a(n) " + cocktailName.getText().toString() + " ?");
+    		}
     		Optional<ButtonType> result = a.showAndWait();
     		if (result.isPresent() && result.get() == ButtonType.OK) {
     			String inputDescription; 
@@ -155,20 +223,22 @@ public class userController {
     			else {
     				inputGarnishes = garnishes.getText().toString();
     			}
+    			if(updateFlag == true) {
+    				imbibeModel.delete(oldCocktailName);	
+    			}
     			
-    			h.put(cocktailName.getText().toString(),inputDescription);
-    			properties.putAll(h);
-    			FileOutputStream writer=new FileOutputStream("data.properties");
-    			properties.store(writer,null);
-    			writer.close();
-    				
-    			File file2 = new File(cocktailName.getText().toString() + ".ct");
-    			file2.createNewFile();
-    			try (BufferedWriter writer2 = new BufferedWriter(new FileWriter(file2))) {
-    				writer2.write(ingredientList.getText().toString().trim() + "\n\n");
-    				writer2.write(instructions.getText().toString() + "\n\n");
-    				writer2.write(inputGarnishes + "\n\n");
-    			}	
+    			imbibeModel.createCocktailFile(cocktailName.getText().toString(), ingredientList.getText().toString().trim(), instructions.getText().toString().trim(), inputGarnishes, inputDescription);	
+    		
+    			Alert a2 = new Alert(AlertType.NONE);
+        		a2.setAlertType(AlertType.CONFIRMATION);
+        		if (updateFlag == true) {
+        			a2.setContentText("Updated the recipe for a(n) " + oldCocktailName + ".");
+        		}
+        		else {
+        			a2.setContentText("Added " + cocktailName.getText().toString() + " to the recipe list! ");
+        		}
+        		a2.show();
+        		
     			description.clear();
     			cocktailName.clear();
     			ingredientList.clear();
@@ -190,16 +260,7 @@ public class userController {
     		a2.show();
     		return;
 		}
-		HashMap<String, String> h=new HashMap<String,String>();
-		File file=new File("data.properties");
-        FileInputStream reader = new FileInputStream(file);
-		Properties properties=new Properties();
-		properties.load(reader);
-		
-		for(String key: properties.stringPropertyNames()){
-        	h.put(key, properties.get(key).toString());
-        }
-		
+
 		String delims = "[\t]+";
 		String [] tokens = cocktailRecipeList.getSelectionModel().getSelectedItem().split(delims);
 		String name = tokens[0];	
@@ -210,13 +271,7 @@ public class userController {
     	Optional<ButtonType> result = a.showAndWait();
     		
     	if (result.isPresent() && result.get() == ButtonType.OK) {
-    		File file2 = new File(name + ".ct"); 
-   			file2.delete();
-   			h.remove(name);
-   			properties.remove(name);
-   			FileOutputStream writer=new FileOutputStream("data.properties");
-   			properties.store(writer,null);
-    				
+    		imbibeModel.delete(name);		
    			FXMLLoader loader = new FXMLLoader(getClass().getResource("RecipeList.fxml"));
    			Parent recipeListParent = loader.load();
    			userController userController = loader.getController();
@@ -269,108 +324,9 @@ public class userController {
 	}
 	
 	public void initializeViewRecipe(String inputName) throws IOException {
-		File file = new File(inputName + ".ct");
-		try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-			String line = br.readLine();
-			String completeRecipe = "";
-			int numofNl = 0;
-			int numofInst = 0;
-			Pattern ouncesPattern = Pattern.compile("ounces|oz|ounce", Pattern.CASE_INSENSITIVE);
-			Pattern mlPattern = Pattern.compile("mls\\.|milliliters|ml\\.",Pattern. CASE_INSENSITIVE);
-			while(line != null) {
-				Matcher ouncesMatcher = ouncesPattern.matcher(line);
-				Matcher mlMatcher = mlPattern.matcher(line);
-				
-				boolean mlMatch = mlMatcher.find(); 
-				boolean ounceMatch = ouncesMatcher.find();
-				
-				if (mlMatch) {
-					//change mls to ounces and insert into the string
-					String delims = "[ ]+";
-					String[] tokens = line.split(delims);
-					line = "";
-					int numMls = Integer.parseInt(tokens[0]); 
-					double numOunces = numMls * 0.033814;
-					DecimalFormat df = new DecimalFormat("##.##");
-					String stringToInsert = "( "+ df.format(numOunces) + " ounce(s) )";
-					for (int i = 0; i < tokens.length; i++) {
-						line = line + tokens[i] + " ";
-						if (i == 1) {
-							line = line + stringToInsert + " ";
-						}
-					}
-				}
-				if (ounceMatch) {
-					//change ounces to milliliters
-					Pattern numPattern = Pattern.compile("[0-9]");
-					Pattern fracPattern = Pattern.compile("/");
-					double totalMls = 0;
-					String delims = "[ ]+";
-					String[] tokens = line.split(delims);
-					line = "";
-					int numOfNumTokens = 0;
-					Matcher tokenMatch = ouncesPattern.matcher(tokens[0]);
-					for (int i = 0; !tokenMatch.find() ;i++) {
-						tokenMatch = ouncesPattern.matcher(tokens[i]);
-						Matcher numMatch = numPattern.matcher(tokens[i]);
-						if(numMatch.find()) {
-							Matcher fracMatch = fracPattern.matcher(tokens[i]);
-							if (fracMatch.find()) {
-								double fraction = 0;
-								switch(tokens[i]) {
-									case "1/8":
-										fraction = 0.125;
-										break;
-									case "1/4":
-										fraction = 0.25;
-										break;
-									case "1/2":
-										fraction = 0.5;
-										break;
-									case "3/4":
-										fraction = 0.75;
-										break;
-								}
-								totalMls = totalMls + fraction * 29.5735;
-								numOfNumTokens++;
-							}
-							else {
-								totalMls = totalMls + Integer.parseInt(tokens[i]) * 29.5735;
-								numOfNumTokens++;
-							}
-						}
-					}
-					String stringToInsert = "( "+ Math.round(totalMls) + " ml. )";
-					for (int i = 0; i < tokens.length; i++) {
-						line = line + tokens[i] + " ";
-						if (i == numOfNumTokens) {
-							line = line + stringToInsert + " ";
-						}
-					}
-					
-				}
-				if (line.trim().isEmpty()) {
-					line = "-----------------------------------------------------------------";
-					numofNl++;
-				}
-				if (numofNl == 0) {
-					line = "- " + line;
-				}
-				if(numofNl == 2) {
-					numofInst++;
-					line = numofInst+ ". "+ line; 
-				}
-				if(numofNl == 1) {
-					line = "-----------------------------------------------------------------\nInstructions: \n"+ line; 
-					numofNl++;
-				}
-				
-				completeRecipe = completeRecipe + line + "\n";
-				line = br.readLine();
-			}
-			recipeArea.setText(completeRecipe);
-		}
-		viewLabel.setText("[Viewing] " + inputName);
+		recipeArea.setText(imbibeModel.parseAndConvertRecipe(inputName));
+		viewLabel.setText("[Viewing] ");
+		viewNameLabel.setText(inputName);
 		
 	}
 	
@@ -380,6 +336,7 @@ public class userController {
         FileInputStream reader = new FileInputStream(file);
 		Properties properties=new Properties();
 		properties.load(reader);
+		
 		for(String key: properties.stringPropertyNames()){
         	h.put(key, properties.get(key).toString());
         	cocktailRecipeList.getItems().add(key+ "\t\t\t" + h.get(key));

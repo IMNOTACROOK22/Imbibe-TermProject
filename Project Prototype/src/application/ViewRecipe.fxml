@@ -14,12 +14,17 @@
                <font>
                   <Font size="13.0" />
                </font></TextArea>
-            <Label fx:id="viewLabel" layoutX="16.0" prefHeight="30.0" prefWidth="375.0">
+            <Label fx:id="viewLabel" layoutX="16.0" prefHeight="30.0" prefWidth="120.0">
                <font>
                   <Font size="20.0" />
                </font></Label>
+            <Label fx:id="viewNameLabel" layoutX="114.0" layoutY="2.0" prefHeight="30.0" prefWidth="280.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
             <Button layoutX="405.0" layoutY="2.0" mnemonicParsing="false" onAction="#returnToList" prefHeight="25.0" prefWidth="129.0" text="Return to Recipe List" />
-            <Button layoutX="462.0" layoutY="295.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="72.0" text="Edit" />
+            <Button fx:id="editButton" layoutX="462.0" layoutY="295.0" mnemonicParsing="false" onAction="#updateRecipe" prefHeight="25.0" prefWidth="72.0" text="Edit" />
          </children>
       </AnchorPane>
    </children>
