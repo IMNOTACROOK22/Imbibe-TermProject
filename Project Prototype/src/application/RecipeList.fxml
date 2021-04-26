@@ -11,11 +11,11 @@
       <AnchorPane prefHeight="428.0" prefWidth="475.0">
          <children>
             <ListView fx:id="cocktailRecipeList" layoutX="23.0" layoutY="67.0" prefHeight="341.0" prefWidth="385.0" />
-            <Button layoutX="358.0" layoutY="16.0" mnemonicParsing="false" onAction="#changeToMenu" text="Return to Menu" />
-            <Button fx:id="viewButton" layoutX="417.0" layoutY="67.0" mnemonicParsing="false" onAction="#viewRecipe" prefHeight="33.0" prefWidth="52.0" text="View" />
-            <Button fx:id="deleteButton" layoutX="417.0" layoutY="122.0" mnemonicParsing="false" onAction="#deleteRecipe" prefHeight="33.0" prefWidth="52.0" text="Delete" />
+            <Button fx:id="toMainMenu" layoutX="363.0" layoutY="12.0" mnemonicParsing="false" onAction="#changeToMenu" prefHeight="33.0" prefWidth="91.0" />
+            <Button fx:id="viewButton" layoutX="417.0" layoutY="67.0" mnemonicParsing="false" onAction="#viewRecipe" prefHeight="50.0" prefWidth="52.0" />
+            <Button fx:id="deleteButton" layoutX="417.0" layoutY="122.0" mnemonicParsing="false" onAction="#deleteRecipe" prefHeight="50.0" prefWidth="52.0" />
             <TextField fx:id="searchName" layoutX="23.0" layoutY="16.0" promptText="Search:" />
-            <Button fx:id="searchButton" layoutX="186.0" layoutY="16.0" mnemonicParsing="false" onAction="#searchRecipe" text="Search" />
+            <Button fx:id="searchButton" layoutX="190.0" layoutY="4.0" mnemonicParsing="false" onAction="#searchRecipe" prefHeight="50.0" prefWidth="52.0" />
          </children>
       </AnchorPane>
    </children>

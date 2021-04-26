@@ -1,1 +1,29 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+#toCreate{
+	-fx-background-image:url("createclear.png");
+	-fx-background-size: 100%, 100%;
+}
+#toRecipeList{
+	-fx-background-image:url("list1.png");
+	-fx-background-size: stretch;
+}
+#toMainMenu{
+	-fx-background-image:url("exit1.png");
+	-fx-background-size: stretch;
+}
+#addButton{
+	-fx-background-image:url("ADD1.jpg");
+	-fx-background-size: stretch;
+}
+#searchButton{
+	-fx-background-image:url("search.jpg");
+	-fx-background-size: stretch;
+}
+#deleteButton{
+	-fx-background-image:url("DELETE1.jpg");
+	-fx-background-size: stretch;
+}
+#viewButton{
+	-fx-background-image:url("list1.png");
+	-fx-background-size: stretch;
+}

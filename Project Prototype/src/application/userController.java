@@ -61,6 +61,8 @@ public class userController {
     private Label viewNameLabel;
     @FXML
     private TextArea recipeArea;
+    @FXML
+    private Button toMainMenu;
     
     public void initializeUpdate(String name) throws IOException {
     	cocktailName.setText(name);
