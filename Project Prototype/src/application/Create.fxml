@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
@@ -11,11 +12,12 @@
          <children>
             <TextField fx:id="cocktailName" alignment="TOP_LEFT" layoutX="14.0" layoutY="14.0" prefHeight="30.0" prefWidth="288.0" promptText="Cocktail Name:" />
             <TextField fx:id="garnishes" alignment="TOP_LEFT" layoutX="14.0" layoutY="195.0" prefHeight="40.0" prefWidth="288.0" promptText="Garnishes(optional):" />
-            <Button layoutX="493.0" layoutY="17.0" mnemonicParsing="false" onAction="#changeToMenu" text="Return to Menu" />
-            <Button fx:id="addButton" layoutX="410.0" layoutY="182.0" mnemonicParsing="false" onAction="#addRecipe" text="ADD RECIPE" />
+            <Button fx:id="toMainMenu" layoutX="491.0" layoutY="14.0" mnemonicParsing="false" onAction="#changeToMenu" prefHeight="30.0" prefWidth="97.0" />
+            <Button fx:id="addButton" layoutX="491.0" layoutY="283.0" mnemonicParsing="false" onAction="#addRecipe" prefHeight="92.0" prefWidth="97.0" />
             <TextArea fx:id="ingredientList" layoutX="14.0" layoutY="58.0" prefHeight="113.0" prefWidth="288.0" promptText="Ingredients:" />
             <TextArea fx:id="description" layoutX="314.0" layoutY="58.0" prefHeight="113.0" prefWidth="274.0" promptText="Description (optional):" />
             <TextArea fx:id="instructions" layoutX="14.0" layoutY="262.0" prefHeight="113.0" prefWidth="288.0" promptText="Instructions:" />
+            <Text layoutX="314.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NOTE : Ounces must be in the form: &lt;whole-number&gt; &lt;fraction&gt; ounces In addition, this application only supports {1/8, 1/4, 1/2, 3/4} for the fraction. If you are inputting milliliters the converted ounce value will be in floating-point." wrappingWidth="205.7421875" />
          </children>
       </AnchorPane>
    </children>

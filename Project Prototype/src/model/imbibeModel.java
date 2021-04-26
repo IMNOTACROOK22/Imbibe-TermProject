@@ -71,7 +71,7 @@ public class imbibeModel {
 		File file = new File(name + ".ct");
 		try (BufferedReader br = new BufferedReader(new FileReader(file))) {
 			String line = br.readLine();
-			String completeRecipe = "";
+			String completeRecipe = "Ingredients:\n-----------------------------------------------------------------\n";
 			int numofNl = 0;
 			int numofInst = 0;
 			Pattern ouncesPattern = Pattern.compile("ounces|oz|ounce", Pattern.CASE_INSENSITIVE);
