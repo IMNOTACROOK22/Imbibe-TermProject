@@ -3,10 +3,10 @@
 Group Name: CTRL-ALT-DRNK
 
 Nick	Schultz	
-Ernesto	Cruz	
-Bond	Blanton	
-Jeffrey	Flowers	
-Edgar	Vasquez	
+|| Ernesto	Cruz	
+|| Bond	Blanton	
+|| Jeffrey	Flowers	
+|| Edgar	Vasquez	
 
 An application designed to store/view cocktail recipes and automatically convert ounces to ml and vice versa.
 
