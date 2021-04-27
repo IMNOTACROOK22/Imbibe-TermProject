@@ -27,3 +27,7 @@
 	-fx-background-image:url("list1.jpg");
 	-fx-background-size: stretch;
 }
+#editButton{
+	-fx-background-image:url("edit1.jpg");
+	-fx-background-size: stretch;
+}
