@@ -64,6 +64,8 @@ public class userController {
     @FXML
     private Button toMainMenu;
     
+    //Fills in the text fields/areas with the data from the hash-map and the .ct file
+    
     public void initializeUpdate(String name) throws IOException {
     	cocktailName.setText(name);
     	int numBlankLines = 0;
@@ -110,6 +112,8 @@ public class userController {
 		description.setText(h.get(name));
     }
     
+    //Loads the create function in order to update a recipe 
+    
     public void updateRecipe(ActionEvent event) throws IOException {
     		
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("Create.fxml"));
@@ -124,6 +128,8 @@ public class userController {
 		window.setScene(createScene);
 		window.show();
     }
+    
+    //Upon pressing the searchButton, it will look for recipes who's name contains the search term
     
     public void searchRecipe(ActionEvent event) throws IOException {
 	
@@ -157,6 +163,8 @@ public class userController {
 		
 		
     }
+    
+    //Creates a new recipe file and enters the cocktail into the hash-map
     
 	public void addRecipe(ActionEvent event) throws IOException {
 		String inputGarnishes;
@@ -254,6 +262,8 @@ public class userController {
 		}
 	}	  
 	
+	//Deletes a selected recipe from the list view
+	
 	public void deleteRecipe(ActionEvent event) throws IOException {
 		if (cocktailRecipeList.getSelectionModel().isEmpty()) {
 			Alert a2 = new Alert(AlertType.NONE);
@@ -288,6 +298,8 @@ public class userController {
 		
 	}
 	
+	//Navigates to the view scene with some input validation
+	
 	public void viewRecipe(ActionEvent event) throws IOException {
 			//View Recipe in the view scene
 		if (cocktailRecipeList.getSelectionModel().isEmpty()) {
@@ -312,6 +324,8 @@ public class userController {
 			window.show();
 	}
 	
+	//Return to the list view from the viewScene
+	
 	@FXML
 	public void returnToList(ActionEvent event) throws IOException{
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("RecipeList.fxml"));
@@ -325,12 +339,16 @@ public class userController {
 		window.show();
 	}
 	
+	//Fills in the text area in the viewScene to show the complete recipe with unit conversions.
+	
 	public void initializeViewRecipe(String inputName) throws IOException {
 		recipeArea.setText(imbibeModel.parseAndConvertRecipe(inputName));
 		viewLabel.setText("[Viewing] ");
 		viewNameLabel.setText(inputName);
 		
 	}
+	
+	//Initializes the recipe list-view 
 	
 	public void initializeRecipeList() throws IOException {
 		HashMap<String, String> h=new HashMap<String,String>();
@@ -345,6 +363,8 @@ public class userController {
 		}
 		cocktailRecipeList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 	}
+	
+	//Changes the scene to the main menu at upon pressing the toMainMenu button
 	
 	@FXML    
 	public void changeToMenu(ActionEvent event) throws IOException{

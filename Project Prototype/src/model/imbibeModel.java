@@ -16,6 +16,8 @@ import java.util.regex.Pattern;
 
 public class imbibeModel {
 	
+	//Deletes a .ct file and removes the cocktail from the hash-map.
+	
 	public static void delete(String name) throws IOException {
 		HashMap<String, String> h=new HashMap<String,String>();
 		File file=new File("data.properties");
@@ -36,6 +38,8 @@ public class imbibeModel {
 		
 		return;
 	}
+	
+	//Creates a .ct file and inputs the cocktail into the hash-map.
 	
 	public static void createCocktailFile(String name, String ingredients, String instructions, String garnishes, String inputDescription) throws IOException {
 		//Read in hash-map
@@ -65,6 +69,8 @@ public class imbibeModel {
 			writer2.write(garnishes + "\n\n");
 		}	
 	}
+	
+	//Parses the .ct file and formats the recipe with unit conversions such that it is easy to read
 	
 	public static String parseAndConvertRecipe(String name) throws IOException {
 	
