@@ -1,8 +1,9 @@
-/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+
 #toCreate{
 	-fx-background-image:url("create.jpg");
 	-fx-background-size: 100%, 100%;
-}
+} 
+
 #toRecipeList{
 	-fx-background-image:url("list1.jpg");
 	-fx-background-size: stretch;
