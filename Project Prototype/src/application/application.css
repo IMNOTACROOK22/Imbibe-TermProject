@@ -1,19 +1,16 @@
-/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+
 #toCreate{
 	-fx-background-image:url("create.jpg");
 	-fx-background-size: 100%, 100%;
-	-fx-background-color:transparent                    /*transparent background here */
 } 
 
 #toRecipeList{
 	-fx-background-image:url("list1.jpg");
 	-fx-background-size: stretch;
-	-fx-background-color: transparent		    /*transparent background here */
 }
 #toMainMenu{
 	-fx-background-image:url("exit1.jpg");
 	-fx-background-size: stretch;
-	-fx-background-color: white			    /*white background here */
 }
 #addButton{
 	-fx-background-image:url("ADD1.jpg");
@@ -30,5 +27,8 @@
 #viewButton{
 	-fx-background-image:url("list1.jpg");
 	-fx-background-size: stretch;
-	-fx-background-color: white			   /*white background here */
+}
+#editButton{
+	-fx-background-image:url("edit1.jpg");
+	-fx-background-size: stretch;
 }
